@@ -645,44 +645,58 @@ end)
         function tabcontent:Toggle(text,default, callback)
             local toggled = false
 
-            local Toggle = Instance.new("TextButton")
-            local ToggleCorner = Instance.new("UICorner")
-            local ToggleTitle = Instance.new("TextLabel")
-            local FrameToggle1 = Instance.new("Frame")
-            local FrameToggle1Corner = Instance.new("UICorner")
-            local FrameToggle2 = Instance.new("Frame")
-            local FrameToggle2Corner = Instance.new("UICorner")
-            local FrameToggle3 = Instance.new("Frame")
-            local FrameToggle3Corner = Instance.new("UICorner")
-            local FrameToggleCircle = Instance.new("Frame")
-            local FrameToggleCircleCorner = Instance.new("UICorner")
+local Toggle = Instance.new("TextButton")
+local ToggleCorner = Instance.new("UICorner")
+local ToggleTitle = Instance.new("TextLabel")
+local ToggleIcon = Instance.new("ImageLabel") -- New icon element
+local FrameToggle1 = Instance.new("Frame")
+local FrameToggle1Corner = Instance.new("UICorner")
+local FrameToggle2 = Instance.new("Frame")
+local FrameToggle2Corner = Instance.new("UICorner")
+local FrameToggle3 = Instance.new("Frame")
+local FrameToggle3Corner = Instance.new("UICorner")
+local FrameToggleCircle = Instance.new("Frame")
+local FrameToggleCircleCorner = Instance.new("UICorner")
 
-            Toggle.Name = "Toggle"
-            Toggle.Parent = Tab
-            Toggle.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            Toggle.Position = UDim2.new(0.215625003, 0, 0.446271926, 0)
-            Toggle.Size = UDim2.new(0, 363, 0, 42)
-            Toggle.AutoButtonColor = false
-            Toggle.Font = Enum.Font.SourceSans
-            Toggle.Text = ""
-            Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Toggle.TextSize = 14.000
+-- Existing toggle setup remains the same...
+Toggle.Name = "Toggle"
+Toggle.Parent = Tab
+Toggle.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+Toggle.Position = UDim2.new(0.215625003, 0, 0.446271926, 0)
+Toggle.Size = UDim2.new(0, 363, 0, 42)
+Toggle.AutoButtonColor = false
+Toggle.Font = Enum.Font.SourceSans
+Toggle.Text = ""
+Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+Toggle.TextSize = 14.000
 
-            ToggleCorner.CornerRadius = UDim.new(0, 5)
-            ToggleCorner.Name = "ToggleCorner"
-            ToggleCorner.Parent = Toggle
+ToggleCorner.CornerRadius = UDim.new(0, 5)
+ToggleCorner.Name = "ToggleCorner"
+ToggleCorner.Parent = Toggle
 
-            ToggleTitle.Name = "ToggleTitle"
-            ToggleTitle.Parent = Toggle
-            ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ToggleTitle.BackgroundTransparency = 1.000
-            ToggleTitle.Position = UDim2.new(0.0358126722, 0, 0, 0)
-            ToggleTitle.Size = UDim2.new(0, 187, 0, 42)
-            ToggleTitle.Font = Enum.Font.Gotham
-            ToggleTitle.Text = text
-            ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ToggleTitle.TextSize = 14.000
-            ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
+-- Add icon before the title
+ToggleIcon.Name = "ToggleIcon"
+ToggleIcon.Parent = Toggle
+ToggleIcon.BackgroundTransparency = 1
+ToggleIcon.Size = UDim2.new(0, 20, 0, 20)
+ToggleIcon.Position = UDim2.new(0.035, 0, 0.5, 0)
+ToggleIcon.AnchorPoint = Vector2.new(0, 0.5)
+ToggleIcon.Image = "rbxassetid://110718870105693"
+ToggleIcon.ImageColor3 = Color3.fromRGB(200, 200, 200)
+ToggleIcon.ScaleType = Enum.ScaleType.Fit
+
+-- Adjust title position to make room for icon
+ToggleTitle.Name = "ToggleTitle"
+ToggleTitle.Parent = Toggle
+ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ToggleTitle.BackgroundTransparency = 1.000
+ToggleTitle.Position = UDim2.new(0.08, 0, 0, 0) -- Moved right to accommodate icon
+ToggleTitle.Size = UDim2.new(0, 187, 0, 42)
+ToggleTitle.Font = Enum.Font.Gotham
+ToggleTitle.Text = text
+ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleTitle.TextSize = 14.000
+ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
             FrameToggle1.Name = "FrameToggle1"
             FrameToggle1.Parent = Toggle
