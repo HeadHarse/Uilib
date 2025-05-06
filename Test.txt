@@ -691,7 +691,7 @@ function tabcontent:Toggle(text, default, callback)
     ToggleBox.Parent = Toggle
     ToggleBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
     ToggleBox.Position = UDim2.new(0.9, 0, 0.05, 0)
-    ToggleBox.AnchorPoint = Vector2.new(0, 0)
+    ToggleBox.AnchorPoint = Vector2.new(0, 0) -- Make sure it's top-left
     ToggleBox.Size = UDim2.new(0, 30, 0, 30)
 
     ToggleBoxCorner.CornerRadius = UDim.new(0, 5)
@@ -721,11 +721,11 @@ function tabcontent:Toggle(text, default, callback)
         if toggled then
             TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}):Play()
             ToggleBox.BackgroundColor3 = PresetColor
-            BoxIcon.Image = "rbxassetid://110718870105693"
+            BoxIcon.Image = "rbxassetid://6031094667" -- Checkmark icon
         else
             TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}):Play()
             ToggleBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-            BoxIcon.Image = ""
+            BoxIcon.Image = "" -- Clear icon
         end
         pcall(callback, toggled)
     end)
@@ -734,9 +734,8 @@ function tabcontent:Toggle(text, default, callback)
         toggled = true
         Toggle.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
         ToggleBox.BackgroundColor3 = PresetColor
-        BoxIcon.Image = "rbxassetid://110718870105693"
+        BoxIcon.Image = "rbxassetid://6031094667"
     end
-end
 
             Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
         end
