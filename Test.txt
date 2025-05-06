@@ -570,7 +570,7 @@ function lib:Window(text, preset, closebind)
 local Button = Instance.new("TextButton")
 local ButtonCorner = Instance.new("UICorner")
 local ButtonTitle = Instance.new("TextLabel")
-local ButtonIcon = Instance.new("ImageLabel") -- New image element
+local ButtonIcon = Instance.new("ImageLabel") -- Image on right side
 
 Button.Name = "Button"
 Button.Parent = Tab
@@ -590,59 +590,55 @@ ButtonTitle.Name = "ButtonTitle"
 ButtonTitle.Parent = Button
 ButtonTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ButtonTitle.BackgroundTransparency = 1.000
-ButtonTitle.Position = UDim2.new(0.0358126722, 0, 0, 0)
-ButtonTitle.Size = UDim2.new(0, 187, 0, 42)
+ButtonTitle.Position = UDim2.new(0.035, 0, 0, 0) -- Slightly adjusted left position
+ButtonTitle.Size = UDim2.new(0, 280, 0, 42) -- Wider to prevent overlap
 ButtonTitle.Font = Enum.Font.Gotham
 ButtonTitle.Text = text
 ButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 ButtonTitle.TextSize = 14.000
 ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
 
--- Add the image icon to the right side
+-- Right-aligned icon with proper spacing
 ButtonIcon.Name = "ButtonIcon"
 ButtonIcon.Parent = Button
 ButtonIcon.BackgroundTransparency = 1
-ButtonIcon.Size = UDim2.new(0, 25, 0, 25)
-ButtonIcon.Position = UDim2.new(0.85, 0, 0.5, 0) -- Right side position
-ButtonIcon.AnchorPoint = Vector2.new(0.5, 0.5) -- Center the icon
-ButtonIcon.Image = "rbxassetid://3926307971" -- Replace with your asset ID
-ButtonIcon.ScaleType = Enum.ScaleType.Fit -- Keep aspect ratio
+ButtonIcon.Size = UDim2.new(0, 20, 0, 20) -- Slightly smaller icon
+ButtonIcon.Position = UDim2.new(0.92, 0, 0.5, 0) -- 92% from left (further right)
+ButtonIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+ButtonIcon.Image = "rbxassetid://YOUR_ASSET_ID_HERE" -- Replace with your image ID
+ButtonIcon.ScaleType = Enum.ScaleType.Fit
+ButtonIcon.ImageColor3 = Color3.fromRGB(200, 200, 200) -- Slightly gray by default
 
-Button.MouseEnter:Connect(
-    function()
-        TweenService:Create(
-            Button,
-            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-            {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}
-        ):Play()
-        TweenService:Create(
-            ButtonIcon,
-            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-            {ImageColor3 = Color3.fromRGB(220, 220, 220)} -- Lighten icon on hover
-        ):Play()
-    end
-)
+-- Hover effects for both button and icon
+Button.MouseEnter:Connect(function()
+    TweenService:Create(
+        Button,
+        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}
+    ):Play()
+    TweenService:Create(
+        ButtonIcon,
+        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {ImageColor3 = Color3.fromRGB(255, 255, 255)} -- Brighter on hover
+    ):Play()
+end)
 
-Button.MouseLeave:Connect(
-    function()
-        TweenService:Create(
-            Button,
-            TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-            {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}
-        ):Play()
-        TweenService:Create(
-            ButtonIcon,
-            TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-            {ImageColor3 = Color3.fromRGB(255, 255, 255)} -- Reset icon color
-        ):Play()
-    end
-)
+Button.MouseLeave:Connect(function()
+    TweenService:Create(
+        Button,
+        TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}
+    ):Play()
+    TweenService:Create(
+        ButtonIcon,
+        TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {ImageColor3 = Color3.fromRGB(200, 200, 200)} -- Return to normal
+    ):Play()
+end)
 
-Button.MouseButton1Click:Connect(
-    function()
-        pcall(callback)
-    end
-)
+Button.MouseButton1Click:Connect(function()
+    pcall(callback)
+end)
 
             Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
         end
