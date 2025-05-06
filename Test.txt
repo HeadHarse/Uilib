@@ -701,7 +701,7 @@ function tabcontent:Toggle(text, default, callback)
     BoxIcon.Parent = ToggleBox
     BoxIcon.BackgroundTransparency = 1
     BoxIcon.Size = UDim2.new(0, 20, 0, 20)
-    BoxIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+    BoxIcon.Position = UDim2.new(0.5, 0, 0.5, 10)
     BoxIcon.AnchorPoint = Vector2.new(0.5, 0.5)
     BoxIcon.Image = "" -- Empty by default
     BoxIcon.ScaleType = Enum.ScaleType.Fit
