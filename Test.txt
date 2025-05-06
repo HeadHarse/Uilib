@@ -668,7 +668,7 @@ function tabcontent:Toggle(text, default, callback)
     ToggleTitle.Name = "ToggleTitle"
     ToggleTitle.Parent = Toggle
     ToggleTitle.BackgroundTransparency = 1
-    ToggleTitle.Position = UDim2.new(0.08, 0, 0, 0)
+    ToggleTitle.Position = UDim2.new(0.035, 0, 0, 0)
     ToggleTitle.Size = UDim2.new(0, 187, 0, 42)
     ToggleTitle.Font = Enum.Font.Gotham
     ToggleTitle.Text = text
