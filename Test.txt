@@ -655,13 +655,9 @@ function tabcontent:Toggle(text, default, callback)
     Toggle.Name = "Toggle"
     Toggle.Parent = Tab
     Toggle.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-    Toggle.Position = UDim2.new(0.215625003, 0, 0.446271926, 0)
     Toggle.Size = UDim2.new(0, 363, 0, 42)
     Toggle.AutoButtonColor = false
-    Toggle.Font = Enum.Font.SourceSans
     Toggle.Text = ""
-    Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
-    Toggle.TextSize = 14.000
 
     ToggleCorner.CornerRadius = UDim.new(0, 5)
     ToggleCorner.Parent = Toggle
@@ -669,32 +665,31 @@ function tabcontent:Toggle(text, default, callback)
     ToggleIcon.Name = "ToggleIcon"
     ToggleIcon.Parent = Toggle
     ToggleIcon.BackgroundTransparency = 1
+    ToggleIcon.Position = UDim2.new(0.03, 0, 0.5, 0)
     ToggleIcon.Size = UDim2.new(0, 20, 0, 20)
-    ToggleIcon.Position = UDim2.new(0.035, 0, 0.5, 0)
     ToggleIcon.AnchorPoint = Vector2.new(0, 0.5)
     ToggleIcon.Image = "rbxassetid://110718870105693"
     ToggleIcon.ImageColor3 = Color3.fromRGB(200, 200, 200)
-    ToggleIcon.ScaleType = Enum.ScaleType.Fit
 
     ToggleTitle.Name = "ToggleTitle"
     ToggleTitle.Parent = Toggle
     ToggleTitle.BackgroundTransparency = 1
-    ToggleTitle.Position = UDim2.new(0.08, 0, 0, 0)
-    ToggleTitle.Size = UDim2.new(0, 187, 0, 42)
+    ToggleTitle.Position = UDim2.new(0.1, 0, 0, 0)
+    ToggleTitle.Size = UDim2.new(0.7, 0, 1, 0)
     ToggleTitle.Font = Enum.Font.Gotham
     ToggleTitle.Text = text
     ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-    ToggleTitle.TextSize = 14.000
+    ToggleTitle.TextSize = 14
     ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
     ToggleBox.Name = "ToggleBox"
     ToggleBox.Parent = Toggle
     ToggleBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    ToggleBox.Position = UDim2.new(0.9, 0, 0.05, 0)
-    ToggleBox.AnchorPoint = Vector2.new(0, 0)
-    ToggleBox.Size = UDim2.new(0, 30, 0, 30)
+    ToggleBox.Position = UDim2.new(0.85, 0, 0.5, 0)
+    ToggleBox.AnchorPoint = Vector2.new(0.5, 0.5)
+    ToggleBox.Size = UDim2.new(0, 24, 0, 24)
 
-    ToggleBoxCorner.CornerRadius = UDim.new(0, 5)
+    ToggleBoxCorner.CornerRadius = UDim.new(0, 4)
     ToggleBoxCorner.Parent = ToggleBox
 
     BoxText.Name = "BoxText"
@@ -705,29 +700,26 @@ function tabcontent:Toggle(text, default, callback)
     BoxText.Font = Enum.Font.GothamBold
     BoxText.Text = ""
     BoxText.TextColor3 = Color3.fromRGB(255, 255, 255)
-    BoxText.TextSize = 20
     BoxText.TextScaled = true
     BoxText.TextXAlignment = Enum.TextXAlignment.Center
     BoxText.TextYAlignment = Enum.TextYAlignment.Center
 
     Toggle.MouseEnter:Connect(function()
-        TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}):Play()
-        TweenService:Create(ToggleIcon, TweenInfo.new(.3, Enum.EasingStyle.Quad), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+        TweenService:Create(Toggle, TweenInfo.new(.3), {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}):Play()
+        TweenService:Create(ToggleIcon, TweenInfo.new(.3), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
     end)
 
     Toggle.MouseLeave:Connect(function()
-        TweenService:Create(Toggle, TweenInfo.new(.2, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}):Play()
-        TweenService:Create(ToggleIcon, TweenInfo.new(.2, Enum.EasingStyle.Quad), {ImageColor3 = Color3.fromRGB(200, 200, 200)}):Play()
+        TweenService:Create(Toggle, TweenInfo.new(.2), {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}):Play()
+        TweenService:Create(ToggleIcon, TweenInfo.new(.2), {ImageColor3 = Color3.fromRGB(200, 200, 200)}):Play()
     end)
 
     Toggle.MouseButton1Click:Connect(function()
         toggled = not toggled
         if toggled then
-            TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}):Play()
             ToggleBox.BackgroundColor3 = PresetColor
             BoxText.Text = "✓"
         else
-            TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}):Play()
             ToggleBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
             BoxText.Text = ""
         end
@@ -736,7 +728,6 @@ function tabcontent:Toggle(text, default, callback)
 
     if default then
         toggled = true
-        Toggle.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
         ToggleBox.BackgroundColor3 = PresetColor
         BoxText.Text = "✓"
     end
