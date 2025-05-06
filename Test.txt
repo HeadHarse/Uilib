@@ -30,7 +30,7 @@ toggleButton.Name = "ToggleUIButton"
 toggleButton.Text = "D"
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
-toggleButton.BackgroundColor3 = Color3.fromRGB(50, 60, 100)
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 toggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 toggleButton.Font = Enum.Font.GothamBold
 toggleButton.TextSize = 20
@@ -52,7 +52,7 @@ stroke.Parent = toggleButton
 -- Button animations
 toggleButton.MouseEnter:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-        BackgroundColor3 = Color3.fromRGB(50, 60, 100),
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0),
         Size = UDim2.new(0, 44, 0, 44)
     }):Play()
     TweenService:Create(stroke, TweenInfo.new(0.2), {
@@ -63,7 +63,7 @@ end)
 
 toggleButton.MouseLeave:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-        BackgroundColor3 = Color3.fromRGB(50, 60, 100),
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0),
         Size = UDim2.new(0, 40, 0, 40)
     }):Play()
     TweenService:Create(stroke, TweenInfo.new(0.2), {
@@ -75,14 +75,14 @@ end)
 toggleButton.MouseButton1Down:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.1), {
         Size = UDim2.new(0, 38, 0, 38),
-        BackgroundColor3 = Color3.fromRGB(50, 60, 100)
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     }):Play()
 end)
 
 toggleButton.MouseButton1Up:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.1), {
         Size = UDim2.new(0, 44, 0, 44),
-        BackgroundColor3 = Color3.fromRGB(50, 60, 100)
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     }):Play()
 end)
 
