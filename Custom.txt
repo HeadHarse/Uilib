@@ -30,8 +30,8 @@ toggleButton.Name = "ToggleUIButton"
 toggleButton.Text = "D"
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
-toggleButton.BackgroundColor3 = Color3.fromRGB(50, 60, 100)
-toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+toggleButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 toggleButton.Font = Enum.Font.GothamBold
 toggleButton.TextSize = 20
 toggleButton.ZIndex = 999
@@ -52,7 +52,7 @@ stroke.Parent = toggleButton
 -- Button animations
 toggleButton.MouseEnter:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-        BackgroundColor3 = Color3.fromRGB(60, 60, 60),
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0),
         Size = UDim2.new(0, 44, 0, 44)
     }):Play()
     TweenService:Create(stroke, TweenInfo.new(0.2), {
@@ -63,7 +63,7 @@ end)
 
 toggleButton.MouseLeave:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-        BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0),
         Size = UDim2.new(0, 40, 0, 40)
     }):Play()
     TweenService:Create(stroke, TweenInfo.new(0.2), {
@@ -75,14 +75,14 @@ end)
 toggleButton.MouseButton1Down:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.1), {
         Size = UDim2.new(0, 38, 0, 38),
-        BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     }):Play()
 end)
 
 toggleButton.MouseButton1Up:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.1), {
         Size = UDim2.new(0, 44, 0, 44),
-        BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     }):Play()
 end)
 
@@ -231,7 +231,7 @@ function lib:Window(text, preset, closebind)
     Main.Name = "Main"
     Main.Parent = ui
     Main.AnchorPoint = Vector2.new(0.5, 0.5)
-    Main.BackgroundColor3 = Color3.fromRGB(50, 60, 100)
+    Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
     Main.BorderSizePixel = 0
     Main.Position = UDim2.new(0.5, 0, 0.5, 0)
     Main.Size = UDim2.new(0, 0, 0, 0)
@@ -567,259 +567,164 @@ function lib:Window(text, preset, closebind)
         )
         local tabcontent = {}
         function tabcontent:Button(text, callback)
-            local Button = Instance.new("TextButton")
-            local ButtonCorner = Instance.new("UICorner")
-            local ButtonTitle = Instance.new("TextLabel")
+local Button = Instance.new("TextButton")
+local ButtonCorner = Instance.new("UICorner")
+local ButtonTitle = Instance.new("TextLabel")
+local ButtonIcon = Instance.new("ImageLabel") -- Image on right side
 
-            Button.Name = "Button"
-            Button.Parent = Tab
-            Button.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            Button.Size = UDim2.new(0, 363, 0, 42)
-            Button.AutoButtonColor = false
-            Button.Font = Enum.Font.SourceSans
-            Button.Text = ""
-            Button.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Button.TextSize = 14.000
+Button.Name = "Button"
+Button.Parent = Tab
+Button.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+Button.Size = UDim2.new(0, 363, 0, 42)
+Button.AutoButtonColor = false
+Button.Font = Enum.Font.SourceSans
+Button.Text = ""
+Button.TextColor3 = Color3.fromRGB(0, 0, 0)
+Button.TextSize = 14.000
 
-            ButtonCorner.CornerRadius = UDim.new(0, 5)
-            ButtonCorner.Name = "ButtonCorner"
-            ButtonCorner.Parent = Button
+ButtonCorner.CornerRadius = UDim.new(0, 5)
+ButtonCorner.Name = "ButtonCorner"
+ButtonCorner.Parent = Button
 
-            ButtonTitle.Name = "ButtonTitle"
-            ButtonTitle.Parent = Button
-            ButtonTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ButtonTitle.BackgroundTransparency = 1.000
-            ButtonTitle.Position = UDim2.new(0.0358126722, 0, 0, 0)
-            ButtonTitle.Size = UDim2.new(0, 187, 0, 42)
-            ButtonTitle.Font = Enum.Font.Gotham
-            ButtonTitle.Text = text
-            ButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ButtonTitle.TextSize = 14.000
-            ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
+ButtonTitle.Name = "ButtonTitle"
+ButtonTitle.Parent = Button
+ButtonTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ButtonTitle.BackgroundTransparency = 1.000
+ButtonTitle.Position = UDim2.new(0.035, 0, 0, 0) -- Slightly adjusted left position
+ButtonTitle.Size = UDim2.new(0, 280, 0, 42) -- Wider to prevent overlap
+ButtonTitle.Font = Enum.Font.Gotham
+ButtonTitle.Text = text
+ButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+ButtonTitle.TextSize = 14.000
+ButtonTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-            Button.MouseEnter:Connect(
-                function()
-                    TweenService:Create(
-                        Button,
-                        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}
-                    ):Play()
-                end
-            )
+-- Right-aligned icon with proper spacing
+ButtonIcon.Name = "ButtonIcon"
+ButtonIcon.Parent = Button
+ButtonIcon.BackgroundTransparency = 1
+ButtonIcon.Size = UDim2.new(0, 20, 0, 20) -- Slightly smaller icon
+ButtonIcon.Position = UDim2.new(0.9, 0, 0.5, 0) -- 92% from left (further right)
+ButtonIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+ButtonIcon.Image = "rbxassetid://6031302931" -- Replace with your image ID
+ButtonIcon.ScaleType = Enum.ScaleType.Fit
+ButtonIcon.ImageColor3 = Color3.fromRGB(200, 200, 200) -- Slightly gray by default
 
-            Button.MouseLeave:Connect(
-                function()
-                    TweenService:Create(
-                        Button,
-                        TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                        {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}
-                    ):Play()
-                end
-            )
+-- Hover effects for both button and icon
+Button.MouseEnter:Connect(function()
+    TweenService:Create(
+        Button,
+        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}
+    ):Play()
+    TweenService:Create(
+        ButtonIcon,
+        TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {ImageColor3 = Color3.fromRGB(255, 255, 255)} -- Brighter on hover
+    ):Play()
+end)
 
-            Button.MouseButton1Click:Connect(
-                function()
-                    pcall(callback)
-                end
-            )
+Button.MouseLeave:Connect(function()
+    TweenService:Create(
+        Button,
+        TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}
+    ):Play()
+    TweenService:Create(
+        ButtonIcon,
+        TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+        {ImageColor3 = Color3.fromRGB(200, 200, 200)} -- Return to normal
+    ):Play()
+end)
+
+Button.MouseButton1Click:Connect(function()
+    pcall(callback)
+end)
 
             Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
         end
-        function tabcontent:Toggle(text,default, callback)
-            local toggled = false
+function tabcontent:Toggle(text, default, callback)
+    local toggled = false
+    local Toggle = Instance.new("TextButton")
+    local ToggleCorner = Instance.new("UICorner")
+    local ToggleTitle = Instance.new("TextLabel")
+    local ToggleBox = Instance.new("Frame")
+    local ToggleBoxCorner = Instance.new("UICorner")
+    local BoxIcon = Instance.new("ImageLabel")
 
-            local Toggle = Instance.new("TextButton")
-            local ToggleCorner = Instance.new("UICorner")
-            local ToggleTitle = Instance.new("TextLabel")
-            local FrameToggle1 = Instance.new("Frame")
-            local FrameToggle1Corner = Instance.new("UICorner")
-            local FrameToggle2 = Instance.new("Frame")
-            local FrameToggle2Corner = Instance.new("UICorner")
-            local FrameToggle3 = Instance.new("Frame")
-            local FrameToggle3Corner = Instance.new("UICorner")
-            local FrameToggleCircle = Instance.new("Frame")
-            local FrameToggleCircleCorner = Instance.new("UICorner")
+    Toggle.Name = "Toggle"
+    Toggle.Parent = Tab
+    Toggle.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+    Toggle.Position = UDim2.new(0.215625003, 0, 0.446271926, 0)
+    Toggle.Size = UDim2.new(0, 363, 0, 42)
+    Toggle.AutoButtonColor = false
+    Toggle.Font = Enum.Font.SourceSans
+    Toggle.Text = ""
+    Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
+    Toggle.TextSize = 14.000
 
-            Toggle.Name = "Toggle"
-            Toggle.Parent = Tab
-            Toggle.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            Toggle.Position = UDim2.new(0.215625003, 0, 0.446271926, 0)
-            Toggle.Size = UDim2.new(0, 363, 0, 42)
-            Toggle.AutoButtonColor = false
-            Toggle.Font = Enum.Font.SourceSans
-            Toggle.Text = ""
-            Toggle.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Toggle.TextSize = 14.000
+    ToggleCorner.CornerRadius = UDim.new(0, 5)
+    ToggleCorner.Parent = Toggle
 
-            ToggleCorner.CornerRadius = UDim.new(0, 5)
-            ToggleCorner.Name = "ToggleCorner"
-            ToggleCorner.Parent = Toggle
+    ToggleTitle.Name = "ToggleTitle"
+    ToggleTitle.Parent = Toggle
+    ToggleTitle.BackgroundTransparency = 1
+    ToggleTitle.Position = UDim2.new(0.035, 0, 0, 0)
+    ToggleTitle.Size = UDim2.new(0, 187, 0, 42)
+    ToggleTitle.Font = Enum.Font.Gotham
+    ToggleTitle.Text = text
+    ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    ToggleTitle.TextSize = 14.000
+    ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 
-            ToggleTitle.Name = "ToggleTitle"
-            ToggleTitle.Parent = Toggle
-            ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            ToggleTitle.BackgroundTransparency = 1.000
-            ToggleTitle.Position = UDim2.new(0.0358126722, 0, 0, 0)
-            ToggleTitle.Size = UDim2.new(0, 187, 0, 42)
-            ToggleTitle.Font = Enum.Font.Gotham
-            ToggleTitle.Text = text
-            ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-            ToggleTitle.TextSize = 14.000
-            ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
+    ToggleBox.Name = "ToggleBox"
+    ToggleBox.Parent = Toggle
+    ToggleBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    ToggleBox.Position = UDim2.new(0.9, 0, 0.05, 0)
+    ToggleBox.AnchorPoint = Vector2.new(0, 0) -- Make sure it's top-left
+    ToggleBox.Size = UDim2.new(0, 30, 0, 30)
 
-            FrameToggle1.Name = "FrameToggle1"
-            FrameToggle1.Parent = Toggle
-            FrameToggle1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-            FrameToggle1.Position = UDim2.new(0.859504104, 0, 0.285714298, 0)
-            FrameToggle1.Size = UDim2.new(0, 37, 0, 18)
+    ToggleBoxCorner.CornerRadius = UDim.new(0, 5)
+    ToggleBoxCorner.Parent = ToggleBox
 
-            FrameToggle1Corner.Name = "FrameToggle1Corner"
-            FrameToggle1Corner.Parent = FrameToggle1
+    BoxIcon.Name = "BoxIcon"
+    BoxIcon.Parent = ToggleBox
+    BoxIcon.BackgroundTransparency = 1
+    BoxIcon.Size = UDim2.new(0, 20, 0, 20)
+    BoxIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+    BoxIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+    BoxIcon.Image = "" -- Empty by default
+    BoxIcon.ScaleType = Enum.ScaleType.Fit
 
-            FrameToggle2.Name = "FrameToggle2"
-            FrameToggle2.Parent = FrameToggle1
-            FrameToggle2.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
-            FrameToggle2.Position = UDim2.new(0.0489999987, 0, 0.0930000022, 0)
-            FrameToggle2.Size = UDim2.new(0, 33, 0, 14)
+    Toggle.MouseEnter:Connect(function()
+        TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}):Play()
+        TweenService:Create(ToggleIcon, TweenInfo.new(.3, Enum.EasingStyle.Quad), {ImageColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+    end)
 
-            FrameToggle2Corner.Name = "FrameToggle2Corner"
-            FrameToggle2Corner.Parent = FrameToggle2
+    Toggle.MouseLeave:Connect(function()
+        TweenService:Create(Toggle, TweenInfo.new(.2, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}):Play()
+        TweenService:Create(ToggleIcon, TweenInfo.new(.2, Enum.EasingStyle.Quad), {ImageColor3 = Color3.fromRGB(200, 200, 200)}):Play()
+    end)
 
-            FrameToggle3.Name = "FrameToggle3"
-            FrameToggle3.Parent = FrameToggle1
-            FrameToggle3.BackgroundColor3 = PresetColor
-            FrameToggle3.BackgroundTransparency = 1.000
-            FrameToggle3.Size = UDim2.new(0, 37, 0, 18)
+    Toggle.MouseButton1Click:Connect(function()
+        toggled = not toggled
+        if toggled then
+            TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}):Play()
+            ToggleBox.BackgroundColor3 = PresetColor
+            BoxIcon.Image = "rbxassetid://6031094667" -- Checkmark icon
+        else
+            TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}):Play()
+            ToggleBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            BoxIcon.Image = "" -- Clear icon
+        end
+        pcall(callback, toggled)
+    end)
 
-            FrameToggle3Corner.Name = "FrameToggle3Corner"
-            FrameToggle3Corner.Parent = FrameToggle3
-
-            FrameToggleCircle.Name = "FrameToggleCircle"
-            FrameToggleCircle.Parent = FrameToggle1
-            FrameToggleCircle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-            FrameToggleCircle.Position = UDim2.new(0.127000004, 0, 0.222000003, 0)
-            FrameToggleCircle.Size = UDim2.new(0, 10, 0, 10)
-
-            FrameToggleCircleCorner.Name = "FrameToggleCircleCorner"
-            FrameToggleCircleCorner.Parent = FrameToggleCircle
-
-            coroutine.wrap(
-                function()
-                    while wait() do
-                        FrameToggle3.BackgroundColor3 = PresetColor
-                    end
-                end
-            )()
-
-            Toggle.MouseButton1Click:Connect(
-                function()
-                    if toggled == false then
-                        TweenService:Create(
-                            Toggle,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggle1,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundTransparency = 1}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggle2,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundTransparency = 1}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggle3,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundTransparency = 0}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggleCircle,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}
-                        ):Play()
-                        FrameToggleCircle:TweenPosition(
-                            UDim2.new(0.587, 0, 0.222000003, 0),
-                            Enum.EasingDirection.Out,
-                            Enum.EasingStyle.Quart,
-                            .2,
-                            true
-                        )
-                    else
-                        TweenService:Create(
-                            Toggle,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = Color3.fromRGB(34, 34, 34)}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggle1,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundTransparency = 0}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggle2,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundTransparency = 0}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggle3,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundTransparency = 1}
-                        ):Play()
-                        TweenService:Create(
-                            FrameToggleCircle,
-                            TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                            {BackgroundColor3 = Color3.fromRGB(50, 50, 50)}
-                        ):Play()
-                        FrameToggleCircle:TweenPosition(
-                            UDim2.new(0.127000004, 0, 0.222000003, 0),
-                            Enum.EasingDirection.Out,
-                            Enum.EasingStyle.Quart,
-                            .2,
-                            true
-                        )
-                    end
-                    toggled = not toggled
-                    pcall(callback, toggled)
-                end
-            )
-
-            if default == true then
-                TweenService:Create(
-                    Toggle,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = Color3.fromRGB(37, 37, 37)}
-                ):Play()
-                TweenService:Create(
-                    FrameToggle1,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundTransparency = 1}
-                ):Play()
-                TweenService:Create(
-                    FrameToggle2,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundTransparency = 1}
-                ):Play()
-                TweenService:Create(
-                    FrameToggle3,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundTransparency = 0}
-                ):Play()
-                TweenService:Create(
-                    FrameToggleCircle,
-                    TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-                    {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}
-                ):Play()
-                FrameToggleCircle:TweenPosition(
-                    UDim2.new(0.587, 0, 0.222000003, 0),
-                    Enum.EasingDirection.Out,
-                    Enum.EasingStyle.Quart,
-                    .2,
-                    true
-                )
-                toggled = not toggled
-            end
+    if default then
+        toggled = true
+        Toggle.BackgroundColor3 = Color3.fromRGB(37, 37, 37)
+        ToggleBox.BackgroundColor3 = PresetColor
+        BoxIcon.Image = "rbxassetid://6031094667"
+    end
 
             Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
         end
