@@ -690,7 +690,7 @@ function tabcontent:Toggle(text, default, callback)
     ToggleBox.Name = "ToggleBox"
     ToggleBox.Parent = Toggle
     ToggleBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    ToggleBox.Position = UDim2.new(0.85, 0, 0.2, 0)
+    ToggleBox.Position = UDim2.new(0.88, 0, 0.1, 0)
     ToggleBox.Size = UDim2.new(0, 30, 0, 30)
 
     ToggleBoxCorner.CornerRadius = UDim.new(0, 5)
