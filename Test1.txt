@@ -12,19 +12,7 @@ ui.Name = "Boyu"
 ui.Parent = game.CoreGui
 ui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- toggle button
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
-local UserInputService = game:GetService("UserInputService")
-
-local player = Players.LocalPlayer
-local gui = Instance.new("ScreenGui")
-gui.Name = "ToggleUIButtonGui"
-gui.ResetOnSpawn = false
-gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-gui.Parent = game:GetService("CoreGui")
-
--- Create manual toggle UI button
+-- Toggle button
 local toggleButton = Instance.new("TextButton")
 toggleButton.Name = "ToggleUIButton"
 toggleButton.Text = "D"
@@ -35,7 +23,7 @@ toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.Font = Enum.Font.GothamBold
 toggleButton.TextSize = 20
 toggleButton.ZIndex = 999
-toggleButton.Parent = gui
+toggleButton.Parent = ui
 
 -- Make it round
 local corner = Instance.new("UICorner")
@@ -52,7 +40,7 @@ stroke.Parent = toggleButton
 -- Button animations
 toggleButton.MouseEnter:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-        BackgroundColor3 = Color3.fromRGB(50, 60, 100),
+        BackgroundColor3 = Color3.fromRGB(60, 70, 110),
         Size = UDim2.new(0, 44, 0, 44)
     }):Play()
     TweenService:Create(stroke, TweenInfo.new(0.2), {
@@ -75,36 +63,22 @@ end)
 toggleButton.MouseButton1Down:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.1), {
         Size = UDim2.new(0, 38, 0, 38),
-        BackgroundColor3 = Color3.fromRGB(50, 60, 100)
+        BackgroundColor3 = Color3.fromRGB(40, 50, 90)
     }):Play()
 end)
 
 toggleButton.MouseButton1Up:Connect(function()
     TweenService:Create(toggleButton, TweenInfo.new(0.1), {
         Size = UDim2.new(0, 44, 0, 44),
-        BackgroundColor3 = Color3.fromRGB(50, 60, 100)
+        BackgroundColor3 = Color3.fromRGB(60, 70, 110)
     }):Play()
 end)
 
 -- Toggle UI function
 local uiVisible = true
 toggleButton.MouseButton1Click:Connect(function()
-    if uiVisible then
-        -- Hide the UI
-        for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
-            if v.Name == "Boyu" then
-                v.Enabled = false
-            end
-        end
-    else
-        -- Show the UI
-        for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
-            if v.Name == "Boyu" then
-                v.Enabled = true
-            end
-        end
-    end
-    uiVisible = not uiVisible
+    ui.Enabled = not ui.Enabled
+    uiVisible = ui.Enabled
 end)
 
 -- Make the button draggable
