@@ -497,6 +497,16 @@ TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.Easing
         TabBtn.Text = ""
         TabBtn.TextColor3 = Color3.fromRGB(100, 0, 0)
         TabBtn.TextSize = 14.000
+        local stroke = Instance.new("UIStroke")
+        stroke.Color = Color3.fromRGB(200, 0, 0)
+        stroke.Thickness = 1
+        stroke.Transparency = 0.3
+        stroke.Parent = TabBtn
+
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 6)
+        corner.Parent = TabBtn
+
 
         TabTitle.Name = "TabTitle"
         TabTitle.Parent = TabBtn
@@ -556,6 +566,19 @@ TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.Easing
         TabTitle.TextSize = 15
             Tab.Visible = true
         end
+
+        
+        TabBtn.MouseEnter:Connect(function()
+            TweenService:Create(TabBtn, TweenInfo.new(0.2), {
+                BackgroundTransparency = 0.1
+            }):Play()
+        end)
+
+        TabBtn.MouseLeave:Connect(function()
+            TweenService:Create(TabBtn, TweenInfo.new(0.2), {
+                BackgroundTransparency = 0.4
+            }):Play()
+        end)
 
         TabBtn.MouseButton1Click:Connect(
             function()
