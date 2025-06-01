@@ -41,13 +41,13 @@ gui.Parent = game:GetService("CoreGui")
 -- Create manual toggle UI button as text button
 local toggleButton = Instance.new("TextButton")
 toggleButton.Name = "ToggleUIButton"
-toggleButton.Text = "🟥"
+toggleButton.Text = "S"
 toggleButton.TextSize = 20
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
 toggleButton.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-toggleButton.BackgroundTransparency = 1
+toggleButton.BackgroundTransparency = 0.3
 toggleButton.ZIndex = 999
 toggleButton.Parent = gui
 
