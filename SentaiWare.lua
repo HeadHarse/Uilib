@@ -30,7 +30,7 @@ toggleButton.Name = "ToggleUIButton"
 toggleButton.Text = "D"
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
-toggleButton.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+toggleButton.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
 toggleButton.TextColor3 = Color3.fromRGB(100, 0, 0)
 toggleButton.Font = Enum.Font.GothamBold
 toggleButton.TextSize = 20
@@ -44,7 +44,7 @@ corner.Parent = toggleButton
 
 -- Add a stroke/border
 local stroke = Instance.new("UIStroke")
-stroke.Color = Color3.fromRGB(60, 60, 60)
+stroke.Color = Color3.fromRGB(255, 255, 255)
 stroke.Thickness = 1
 stroke.Transparency = 0.5
 stroke.Parent = toggleButton
@@ -232,6 +232,7 @@ function lib:Window(text, preset, closebind)
     Main.Parent = ui
     Main.AnchorPoint = Vector2.new(0.5, 0.5)
     Main.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+    Main.BackgroundTransparency = 0.3
     Main.BorderSizePixel = 0
     Main.Position = UDim2.new(0.5, 0, 0.5, 0)
     Main.Size = UDim2.new(0, 0, 0, 0)
@@ -484,7 +485,7 @@ function lib:Window(text, preset, closebind)
 
         TabBtnIndicator.Name = "TabBtnIndicator"
         TabBtnIndicator.Parent = TabBtn
-        TabBtnIndicator.BackgroundColor3 = PresetColor
+        TabBtnIndicator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TabBtnIndicator.BorderSizePixel = 0
         TabBtnIndicator.Position = UDim2.new(0, 0, 1, 0)
         TabBtnIndicator.Size = UDim2.new(0, 0, 0, 2)
@@ -495,7 +496,7 @@ function lib:Window(text, preset, closebind)
         coroutine.wrap(
             function()
                 while wait() do
-                    TabBtnIndicator.BackgroundColor3 = PresetColor
+                    TabBtnIndicator.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
                 end
             end
         )()
@@ -506,7 +507,8 @@ function lib:Window(text, preset, closebind)
         Tab.Name = "Tab"
         Tab.Parent = TabFolder
         Tab.Active = true
-        Tab.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Tab.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+        Tab.BackgroundTransparency = 0.3
         Tab.BackgroundTransparency = 1.000
         Tab.BorderSizePixel = 0
         Tab.Position = UDim2.new(0.31400001, 0, 0.147, 0)
@@ -711,7 +713,8 @@ function tabcontent:Toggle(text, default, callback)
             TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(160, 0, 0)}):Play()
             ToggleBox.BackgroundColor3 = PresetColor
             BoxIcon.Image = "rbxassetid://6031094667"
-            BoxIcon.ImageColor3 = Color3.fromRGB(255, 255, 255) -- white icon
+            BoxIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
+            BoxIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
         else
             TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(139, 0, 0)}):Play()
             ToggleBox.BackgroundColor3 = Color3.fromRGB(180, 0, 0)
@@ -725,6 +728,7 @@ function tabcontent:Toggle(text, default, callback)
         Toggle.BackgroundColor3 = Color3.fromRGB(160, 0, 0)
         ToggleBox.BackgroundColor3 = PresetColor
         BoxIcon.Image = "rbxassetid://6031094667"
+            BoxIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
     end
 
             Tab.CanvasSize = UDim2.new(0, 0, 0, TabLayout.AbsoluteContentSize.Y)
