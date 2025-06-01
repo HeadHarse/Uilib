@@ -47,7 +47,7 @@ toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
 toggleButton.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-toggleButton.BackgroundTransparency = 0.3
+toggleButton.BackgroundTransparency = 0.5
 toggleButton.ZIndex = 999
 toggleButton.Parent = gui
 
@@ -662,7 +662,7 @@ ButtonIcon.BackgroundTransparency = 1
 ButtonIcon.Size = UDim2.new(0, 20, 0, 20) -- Slightly smaller icon
 ButtonIcon.Position = UDim2.new(1, -10, 0.5, 0)
 ButtonIcon.AnchorPoint = Vector2.new(1, 0.5)
-ButtonIcon.Image = "rbxassetid://6031302931"
+ButtonIcon.Image = "rbxassetid://12804017070"
 ButtonIcon.ScaleType = Enum.ScaleType.Fit
 ButtonIcon.ImageColor3 = Color3.fromRGB(200, 200, 200)
 
