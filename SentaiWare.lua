@@ -931,6 +931,7 @@ addGradient(Toggle)
             Dropdown.ClipsDescendants = true
             Dropdown.Position = UDim2.new(-0.541071415, 0, -0.532915354, 0)
             Dropdown.Size = UDim2.new(0, 363, 0, 42)
+            addGradient(Dropdown)
 
             DropdownCorner.CornerRadius = UDim.new(0, 5)
             DropdownCorner.Name = "DropdownCorner"
@@ -1046,6 +1047,7 @@ addGradient(Toggle)
                 Item.Text = v
                 Item.TextColor3 = Color3.fromRGB(255, 255, 255)
                 Item.TextSize = 15.000
+                addGradient(Item)
 
                 ItemCorner.CornerRadius = UDim.new(0, 4)
                 ItemCorner.Name = "ItemCorner"
@@ -1595,6 +1597,7 @@ addGradient(Toggle)
             Label.Text = ""
             Label.TextColor3 = Color3.fromRGB(100, 0, 0)
             Label.TextSize = 14.000
+            addGradient(Label)
 
             LabelCorner.CornerRadius = UDim.new(0, 5)
             LabelCorner.Name = "ButtonCorner"
