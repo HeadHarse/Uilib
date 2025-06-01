@@ -490,7 +490,8 @@ TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.Easing
         TabBtn.Name = "TabBtn"
         TabBtn.Parent = TabHold
         TabBtn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        TabBtn.BackgroundTransparency = 1.000
+        TabBtn.BackgroundTransparency = 0.4
+        TabBtn.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
         TabBtn.Size = UDim2.new(0, 107, 0, 21)
         TabBtn.Font = Enum.Font.SourceSans
         TabBtn.Text = ""
@@ -551,6 +552,8 @@ TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.Easing
             fs = true
             TabBtnIndicator.Size = UDim2.new(0, 13, 0, 2)
             TabTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        TabTitle.Font = Enum.Font.GothamSemibold
+        TabTitle.TextSize = 15
             Tab.Visible = true
         end
 
@@ -633,7 +636,7 @@ ButtonIcon.BackgroundTransparency = 1
 ButtonIcon.Size = UDim2.new(0, 20, 0, 20) -- Slightly smaller icon
 ButtonIcon.Position = UDim2.new(1, -10, 0.5, 0)
 ButtonIcon.AnchorPoint = Vector2.new(1, 0.5)
-ButtonIcon.Image = "rbxassetid://10743190868" -- better play icon
+ButtonIcon.Image = "rbxassetid://6031302931"
 ButtonIcon.ScaleType = Enum.ScaleType.Fit
 ButtonIcon.ImageColor3 = Color3.fromRGB(200, 200, 200)
 
@@ -743,8 +746,8 @@ addGradient(Toggle)
         toggled = not toggled
         if toggled then
             TweenService:Create(Toggle, TweenInfo.new(.3, Enum.EasingStyle.Quad), {BackgroundColor3 = Color3.fromRGB(160, 0, 0)}):Play()
-            ToggleBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            BoxIcon.Image = "rbxassetid://10743189949" -- custom toggle checkmark
+            ToggleBox.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+            BoxIcon.Image = "rbxassetid://6031094667"
             BoxIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
             BoxIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
         else
@@ -758,8 +761,8 @@ addGradient(Toggle)
     if default then
         toggled = true
         Toggle.BackgroundColor3 = Color3.fromRGB(160, 0, 0)
-        ToggleBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        BoxIcon.Image = "rbxassetid://10743189949" -- custom toggle checkmark
+        ToggleBox.BackgroundColor3 = Color3.fromRGB(100, 100, 100)
+        BoxIcon.Image = "rbxassetid://6031094667"
             BoxIcon.ImageColor3 = Color3.fromRGB(255, 255, 255)
     end
 
@@ -1577,7 +1580,7 @@ addGradient(Toggle)
             LabelTitle.Font = Enum.Font.Gotham
             LabelTitle.Text = text
             LabelTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-            LabelTitle.Text = "📝 " .. LabelTitle.Text
+            LabelTitle.Text = LabelTitle.Text
             LabelTitle.TextSize = 14.000
             LabelTitle.TextXAlignment = Enum.TextXAlignment.Left
 
