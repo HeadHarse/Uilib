@@ -662,7 +662,7 @@ ButtonIcon.BackgroundTransparency = 1
 ButtonIcon.Size = UDim2.new(0, 20, 0, 20) -- Slightly smaller icon
 ButtonIcon.Position = UDim2.new(1, -10, 0.5, 0)
 ButtonIcon.AnchorPoint = Vector2.new(1, 0.5)
-ButtonIcon.Image = "rbxassetid://12804017070"
+ButtonIcon.Image = "rbxassetid://6031302931"
 ButtonIcon.ScaleType = Enum.ScaleType.Fit
 ButtonIcon.ImageColor3 = Color3.fromRGB(200, 200, 200)
 
