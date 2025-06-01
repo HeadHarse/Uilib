@@ -39,7 +39,7 @@ gui.Parent = game:GetService("CoreGui")
 -- Create manual toggle UI button as image
 local toggleButton = Instance.new("ImageButton")
 toggleButton.Name = "ToggleUIButton"
-toggleButton.Image = "rbxassetid://9180622670" -- Replace this with your image asset ID
+toggleButton.Image = "http://www.roblox.com/asset/?id=9180622670" -- Replace this with your image asset ID
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
 toggleButton.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
