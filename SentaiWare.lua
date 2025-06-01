@@ -39,7 +39,7 @@ gui.Parent = game:GetService("CoreGui")
 -- Create manual toggle UI button as image
 local toggleButton = Instance.new("ImageButton")
 toggleButton.Name = "ToggleUIButton"
-toggleButton.Image = "rbxassetid://124133245" -- Replace this with your image asset ID
+toggleButton.Image = "rbxassetid://9180622670" -- Replace this with your image asset ID
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
 toggleButton.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
@@ -945,6 +945,14 @@ addGradient(Toggle)
             DropdownBtn.Text = ""
             DropdownBtn.TextColor3 = Color3.fromRGB(100, 0, 0)
             DropdownBtn.TextSize = 14.000
+        local dropCorner = Instance.new("UICorner")
+        dropCorner.CornerRadius = UDim.new(0, 6)
+        dropCorner.Parent = DropdownBtn
+        local dropStroke = Instance.new("UIStroke")
+        dropStroke.Color = Color3.fromRGB(200, 0, 0)
+        dropStroke.Thickness = 1
+        dropStroke.Transparency = 0.3
+        dropStroke.Parent = DropdownBtn
 
             DropdownTitle.Name = "DropdownTitle"
             DropdownTitle.Parent = Dropdown
@@ -1030,6 +1038,7 @@ addGradient(Toggle)
                 Item.Name = "Item"
                 Item.Parent = DropItemHolder
                 Item.BackgroundColor3 = Color3.fromRGB(139, 0, 0)
+                Item.BackgroundTransparency = 0.1
                 Item.ClipsDescendants = true
                 Item.Size = UDim2.new(0, 335, 0, 25)
                 Item.AutoButtonColor = false
