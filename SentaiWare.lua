@@ -36,20 +36,22 @@ gui.ResetOnSpawn = false
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 gui.Parent = game:GetService("CoreGui")
 
--- Create manual toggle UI button as image
-local toggleButton = Instance.new("ImageButton")
+-- Create manual toggle UI button
+local toggleButton = Instance.new("TextButton")
 toggleButton.Name = "ToggleUIButton"
-toggleButton.Image = "rbxassetid://9180622670" -- Replace this with your image asset ID
+toggleButton.Text = "D"
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
 toggleButton.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
-toggleButton.BackgroundTransparency = 1
+toggleButton.TextColor3 = Color3.fromRGB(100, 0, 0)
+toggleButton.Font = Enum.Font.GothamBold
+toggleButton.TextSize = 20
 toggleButton.ZIndex = 999
 toggleButton.Parent = gui
 
 -- Make it round
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 0)
+corner.CornerRadius = UDim.new(1, 0)
 corner.Parent = toggleButton
 
 -- Add a stroke/border
@@ -61,64 +63,65 @@ stroke.Parent = toggleButton
 
 -- Button animations
 toggleButton.MouseEnter:Connect(function()
-	local hoverStroke = Instance.new("UIStroke")
-	hoverStroke.Name = "UIStroke"
-	hoverStroke.Color = Color3.fromRGB(255, 0, 0)
-	hoverStroke.Thickness = 1
-	hoverStroke.Transparency = 0.4
-	hoverStroke.Parent = toggleButton
-
-	TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-		BackgroundColor3 = Color3.fromRGB(100, 0, 0),
-		Size = UDim2.new(0, 44, 0, 44)
-	}):Play()
-
-	TweenService:Create(stroke, TweenInfo.new(0.2), {
-		Thickness = 2,
-		Transparency = 0.3
-	}):Play()
+    Button.UIStroke = Instance.new("UIStroke", Button)
+    Button.UIStroke.Color = Color3.fromRGB(255, 0, 0)
+    Button.UIStroke.Thickness = 1
+    Button.UIStroke.Transparency = 0.4
+    TweenService:Create(toggleButton, TweenInfo.new(0.2), {
+        BackgroundColor3 = Color3.fromRGB(100, 0, 0),
+        Size = UDim2.new(0, 44, 0, 44)
+    }):Play()
+    TweenService:Create(stroke, TweenInfo.new(0.2), {
+        Thickness = 2,
+        Transparency = 0.3
+    }):Play()
 end)
 
 toggleButton.MouseLeave:Connect(function()
-	local existingStroke = toggleButton:FindFirstChild("UIStroke")
-	if existingStroke then
-		existingStroke:Destroy()
-	end
-
-	TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-		BackgroundColor3 = Color3.fromRGB(100, 0, 0),
-		Size = UDim2.new(0, 40, 0, 40)
-	}):Play()
-
-	TweenService:Create(stroke, TweenInfo.new(0.2), {
-		Thickness = 1,
-		Transparency = 0.5
-	}):Play()
+    if Button:FindFirstChild("UIStroke") then Button.UIStroke:Destroy() end
+    TweenService:Create(toggleButton, TweenInfo.new(0.2), {
+        BackgroundColor3 = Color3.fromRGB(100, 0, 0),
+        Size = UDim2.new(0, 40, 0, 40)
+    }):Play()
+    TweenService:Create(stroke, TweenInfo.new(0.2), {
+        Thickness = 1,
+        Transparency = 0.5
+    }):Play()
 end)
 
 toggleButton.MouseButton1Down:Connect(function()
-	TweenService:Create(toggleButton, TweenInfo.new(0.1), {
-		Size = UDim2.new(0, 38, 0, 38),
-		BackgroundColor3 = Color3.fromRGB(100, 0, 0)
-	}):Play()
+    TweenService:Create(toggleButton, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 38, 0, 38),
+        BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+    }):Play()
 end)
 
 toggleButton.MouseButton1Up:Connect(function()
-	TweenService:Create(toggleButton, TweenInfo.new(0.1), {
-		Size = UDim2.new(0, 44, 0, 44),
-		BackgroundColor3 = Color3.fromRGB(100, 0, 0)
-	}):Play()
+    TweenService:Create(toggleButton, TweenInfo.new(0.1), {
+        Size = UDim2.new(0, 44, 0, 44),
+        BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+    }):Play()
 end)
 
 -- Toggle UI function
 local uiVisible = true
 toggleButton.MouseButton1Click:Connect(function()
-	for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
-		if v.Name == "Boyu" then
-			v.Enabled = not uiVisible
-		end
-	end
-	uiVisible = not uiVisible
+    if uiVisible then
+        -- Hide the UI
+        for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
+            if v.Name == "Boyu" then
+                v.Enabled = false
+            end
+        end
+    else
+        -- Show the UI
+        for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
+            if v.Name == "Boyu" then
+                v.Enabled = true
+            end
+        end
+    end
+    uiVisible = not uiVisible
 end)
 
 -- Make the button draggable
@@ -494,16 +497,6 @@ TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.Easing
         TabBtn.Text = ""
         TabBtn.TextColor3 = Color3.fromRGB(100, 0, 0)
         TabBtn.TextSize = 14.000
-        local stroke = Instance.new("UIStroke")
-        stroke.Color = Color3.fromRGB(200, 0, 0)
-        stroke.Thickness = 1
-        stroke.Transparency = 0.3
-        stroke.Parent = TabBtn
-
-        local corner = Instance.new("UICorner")
-        corner.CornerRadius = UDim.new(0, 6)
-        corner.Parent = TabBtn
-
 
         TabTitle.Name = "TabTitle"
         TabTitle.Parent = TabBtn
@@ -563,19 +556,6 @@ TweenService:Create(Main, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.Easing
         TabTitle.TextSize = 15
             Tab.Visible = true
         end
-
-        
-        TabBtn.MouseEnter:Connect(function()
-            TweenService:Create(TabBtn, TweenInfo.new(0.2), {
-                BackgroundTransparency = 0.1
-            }):Play()
-        end)
-
-        TabBtn.MouseLeave:Connect(function()
-            TweenService:Create(TabBtn, TweenInfo.new(0.2), {
-                BackgroundTransparency = 0.4
-            }):Play()
-        end)
 
         TabBtn.MouseButton1Click:Connect(
             function()
@@ -945,14 +925,6 @@ addGradient(Toggle)
             DropdownBtn.Text = ""
             DropdownBtn.TextColor3 = Color3.fromRGB(100, 0, 0)
             DropdownBtn.TextSize = 14.000
-        local dropCorner = Instance.new("UICorner")
-        dropCorner.CornerRadius = UDim.new(0, 6)
-        dropCorner.Parent = DropdownBtn
-        local dropStroke = Instance.new("UIStroke")
-        dropStroke.Color = Color3.fromRGB(200, 0, 0)
-        dropStroke.Thickness = 1
-        dropStroke.Transparency = 0.3
-        dropStroke.Parent = DropdownBtn
 
             DropdownTitle.Name = "DropdownTitle"
             DropdownTitle.Parent = Dropdown
@@ -1038,7 +1010,6 @@ addGradient(Toggle)
                 Item.Name = "Item"
                 Item.Parent = DropItemHolder
                 Item.BackgroundColor3 = Color3.fromRGB(139, 0, 0)
-                Item.BackgroundTransparency = 0.1
                 Item.ClipsDescendants = true
                 Item.Size = UDim2.new(0, 335, 0, 25)
                 Item.AutoButtonColor = false
