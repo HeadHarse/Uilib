@@ -36,13 +36,17 @@ gui.ResetOnSpawn = false
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 gui.Parent = game:GetService("CoreGui")
 
--- Create manual toggle UI button as image
-local toggleButton = Instance.new("ImageButton")
+-- Replace the toggle button creation code with this:
+
+-- Create manual toggle UI button as text button
+local toggleButton = Instance.new("TextButton")
 toggleButton.Name = "ToggleUIButton"
-toggleButton.Image = "http://www.roblox.com/asset/?id=9180622670" -- Replace this with your image asset ID
+toggleButton.Text = "🟥"
+toggleButton.TextSize = 20
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
-toggleButton.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
+toggleButton.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.BackgroundTransparency = 1
 toggleButton.ZIndex = 999
 toggleButton.Parent = gui
@@ -58,6 +62,8 @@ stroke.Color = Color3.fromRGB(255, 255, 255)
 stroke.Thickness = 1
 stroke.Transparency = 0.5
 stroke.Parent = toggleButton
+
+addGradient(toggleButton)
 
 -- Button animations
 toggleButton.MouseEnter:Connect(function()
