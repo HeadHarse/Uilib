@@ -36,22 +36,20 @@ gui.ResetOnSpawn = false
 gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 gui.Parent = game:GetService("CoreGui")
 
--- Create manual toggle UI button
-local toggleButton = Instance.new("TextButton")
+-- Create manual toggle UI button as image
+local toggleButton = Instance.new("ImageButton")
 toggleButton.Name = "ToggleUIButton"
-toggleButton.Text = "D"
+toggleButton.Image = "rbxassetid://124133245" -- Replace this with your image asset ID
 toggleButton.Size = UDim2.new(0, 40, 0, 40)
 toggleButton.Position = UDim2.new(0, 10, 0, 10)
 toggleButton.BackgroundColor3 = Color3.fromRGB(120, 0, 0)
-toggleButton.TextColor3 = Color3.fromRGB(100, 0, 0)
-toggleButton.Font = Enum.Font.GothamBold
-toggleButton.TextSize = 20
+toggleButton.BackgroundTransparency = 1
 toggleButton.ZIndex = 999
 toggleButton.Parent = gui
 
 -- Make it round
 local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(1, 0)
+corner.CornerRadius = UDim.new(0, 0)
 corner.Parent = toggleButton
 
 -- Add a stroke/border
@@ -63,65 +61,64 @@ stroke.Parent = toggleButton
 
 -- Button animations
 toggleButton.MouseEnter:Connect(function()
-    Button.UIStroke = Instance.new("UIStroke", Button)
-    Button.UIStroke.Color = Color3.fromRGB(255, 0, 0)
-    Button.UIStroke.Thickness = 1
-    Button.UIStroke.Transparency = 0.4
-    TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-        BackgroundColor3 = Color3.fromRGB(100, 0, 0),
-        Size = UDim2.new(0, 44, 0, 44)
-    }):Play()
-    TweenService:Create(stroke, TweenInfo.new(0.2), {
-        Thickness = 2,
-        Transparency = 0.3
-    }):Play()
+	local hoverStroke = Instance.new("UIStroke")
+	hoverStroke.Name = "UIStroke"
+	hoverStroke.Color = Color3.fromRGB(255, 0, 0)
+	hoverStroke.Thickness = 1
+	hoverStroke.Transparency = 0.4
+	hoverStroke.Parent = toggleButton
+
+	TweenService:Create(toggleButton, TweenInfo.new(0.2), {
+		BackgroundColor3 = Color3.fromRGB(100, 0, 0),
+		Size = UDim2.new(0, 44, 0, 44)
+	}):Play()
+
+	TweenService:Create(stroke, TweenInfo.new(0.2), {
+		Thickness = 2,
+		Transparency = 0.3
+	}):Play()
 end)
 
 toggleButton.MouseLeave:Connect(function()
-    if Button:FindFirstChild("UIStroke") then Button.UIStroke:Destroy() end
-    TweenService:Create(toggleButton, TweenInfo.new(0.2), {
-        BackgroundColor3 = Color3.fromRGB(100, 0, 0),
-        Size = UDim2.new(0, 40, 0, 40)
-    }):Play()
-    TweenService:Create(stroke, TweenInfo.new(0.2), {
-        Thickness = 1,
-        Transparency = 0.5
-    }):Play()
+	local existingStroke = toggleButton:FindFirstChild("UIStroke")
+	if existingStroke then
+		existingStroke:Destroy()
+	end
+
+	TweenService:Create(toggleButton, TweenInfo.new(0.2), {
+		BackgroundColor3 = Color3.fromRGB(100, 0, 0),
+		Size = UDim2.new(0, 40, 0, 40)
+	}):Play()
+
+	TweenService:Create(stroke, TweenInfo.new(0.2), {
+		Thickness = 1,
+		Transparency = 0.5
+	}):Play()
 end)
 
 toggleButton.MouseButton1Down:Connect(function()
-    TweenService:Create(toggleButton, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 38, 0, 38),
-        BackgroundColor3 = Color3.fromRGB(100, 0, 0)
-    }):Play()
+	TweenService:Create(toggleButton, TweenInfo.new(0.1), {
+		Size = UDim2.new(0, 38, 0, 38),
+		BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+	}):Play()
 end)
 
 toggleButton.MouseButton1Up:Connect(function()
-    TweenService:Create(toggleButton, TweenInfo.new(0.1), {
-        Size = UDim2.new(0, 44, 0, 44),
-        BackgroundColor3 = Color3.fromRGB(100, 0, 0)
-    }):Play()
+	TweenService:Create(toggleButton, TweenInfo.new(0.1), {
+		Size = UDim2.new(0, 44, 0, 44),
+		BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+	}):Play()
 end)
 
 -- Toggle UI function
 local uiVisible = true
 toggleButton.MouseButton1Click:Connect(function()
-    if uiVisible then
-        -- Hide the UI
-        for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
-            if v.Name == "Boyu" then
-                v.Enabled = false
-            end
-        end
-    else
-        -- Show the UI
-        for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
-            if v.Name == "Boyu" then
-                v.Enabled = true
-            end
-        end
-    end
-    uiVisible = not uiVisible
+	for _, v in pairs(game:GetService("CoreGui"):GetChildren()) do
+		if v.Name == "Boyu" then
+			v.Enabled = not uiVisible
+		end
+	end
+	uiVisible = not uiVisible
 end)
 
 -- Make the button draggable
