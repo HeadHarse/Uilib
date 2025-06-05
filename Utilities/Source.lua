@@ -70,7 +70,7 @@ TextButton.BackgroundColor3 = _G.Dark;
 TextButton.TextColor3 = Color3.fromRGB(250, 250, 250);
 TextButton.Text = "SEN";
 TextButton.Font = Enum.Font.SciFi;
-TextButton.TextSize = 12;
+TextButton.TextSize = 17;
 TextButton.BackgroundTransparency = 0;
 TextButton.AutoButtonColor = false;
 MakeDraggable(TextButton, OutlineButton);
